@@ -1,0 +1,14 @@
+{
+  "name": "D&D Character Sheet",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "D&D 5e Player Tool Sheet – character, spells, equipment and more",
+  "author": "DUDO a SPOL",
+  "action": {
+    "title": "Character Sheet",
+    "icon": "https://boopycode.github.io/dnd/icon.svg",
+    "popover": "https://boopycode.github.io/dnd/DnD_Player_Tool_Sheet_1_0_20%20Fun%20with%20Themes.html",
+    "width": 1100,
+    "height": 820
+  }
+}
