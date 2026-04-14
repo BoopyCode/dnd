@@ -7342,9 +7342,14 @@ function isMapaPopoutContext() {
 }
 
 function openMapaInNewTab() {
-  const url = new URL(window.location.href);
-  url.searchParams.set('mapa_popout', '1');
-  const popup = window.open(url.toString(), '_blank');
+  const currentUrl = new URL(window.location.href);
+  const popoutUrl = new URL('https://boopycode.github.io/dnd/DnD_Player_Tool_Sheet_1_0_20%20Fun%20with%20Themes.html');
+  const obrref = currentUrl.searchParams.get('obrref');
+
+  if (obrref) popoutUrl.searchParams.set('obrref', obrref);
+  popoutUrl.searchParams.set('mapa_popout', '1');
+
+  const popup = window.open(popoutUrl.toString(), '_blank');
   if (popup) {
     showToast('Mapa otvorena v novom tabu');
     return;
