@@ -6013,6 +6013,25 @@ input[type="checkbox"] {
   <div id="achv-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;"></div>
 </div>
 
+<!-- ═══════════════ MAPA TAB ═══════════════ -->
+<div id="tab-mapa" class="tab-content">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+    <div class="section-header">🗺 Mapa kampane</div>
+  </div>
+  <div class="panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;gap:20px;text-align:center;">
+    <div style="font-size:72px;">🗺</div>
+    <div style="font-family:var(--font-display,Cinzel,serif);font-size:1.3rem;color:var(--accent-gold-bright);letter-spacing:2px;">DUDO A SPOL</div>
+    <div style="color:var(--text-secondary);font-size:0.9rem;max-width:380px;line-height:1.7;">
+      Interaktívna mapa kampane beží na Owlbear Rodeo.<br>
+      Klikni nižšie — mapa sa otvorí v novom tabe, sheet ostane otvorený.
+    </div>
+    <a href="https://www.owlbear.rodeo/room/qFy8n_nYw-Ow/DUDO%20A%20SPOL" target="_blank" rel="noopener noreferrer"
+       class="btn" style="padding:14px 40px;font-size:1rem;font-weight:700;letter-spacing:1px;text-decoration:none;">
+      ⚔ Otvoriť Mapu
+    </a>
+  </div>
+</div>
+
 <!-- ═══════════════ END MAIN CONTENT ═══════════════ -->
 </div><!-- .main-content -->
 </div><!-- .app-body -->
@@ -6457,31 +6476,6 @@ input[type="checkbox"] {
   <div class="allies-toggle" onclick="toggleAlliesPanel()" title="Allies &amp; Companions">🐾</div>
 </div>
 
-<!-- ═══════════════ MAPA TAB ═══════════════ -->
-<div id="tab-mapa" class="tab-content">
-  <!-- Obsah sa nastaví dynamicky cez JS podľa kontextu (Owlbear vs standalone) -->
-  <div id="mapa-owlbear" style="display:none;flex-direction:column;align-items:center;justify-content:center;height:calc(100vh - 120px);gap:20px;">
-    <div style="font-size:64px;">🗺</div>
-    <div style="font-family:var(--font-display,Cinzel,serif);font-size:1.4rem;color:var(--accent-gold-bright);letter-spacing:2px;">Mapa kampane</div>
-    <div style="color:var(--text-secondary);font-size:0.9rem;text-align:center;max-width:340px;line-height:1.6;">Mapa je aktívna za týmto panelom.<br>Zavri alebo zmenši panel pre prácu s mapou.</div>
-    <button onclick="closeMapaPanel()"
-      style="padding:14px 36px;background:var(--accent-gold);color:#111;font-family:var(--font-display,Cinzel,serif);font-size:1rem;font-weight:700;letter-spacing:1px;border-radius:4px;border:none;cursor:pointer;box-shadow:0 0 20px rgba(180,130,40,0.3);"
-      onmouseover="this.style.background='var(--accent-gold-bright)'" onmouseout="this.style.background='var(--accent-gold)'">
-      ✕ Zatvoriť panel
-    </button>
-  </div>
-  <div id="mapa-standalone" style="display:none;flex-direction:column;align-items:center;justify-content:center;height:calc(100vh - 120px);gap:24px;">
-    <div style="font-size:64px;">🗺</div>
-    <div style="font-family:var(--font-display,Cinzel,serif);font-size:1.4rem;color:var(--accent-gold-bright);letter-spacing:2px;">Mapa kampane</div>
-    <div style="color:var(--text-secondary);font-size:0.9rem;text-align:center;max-width:340px;">Klikni nižšie — mapa sa otvorí v tomto okne.</div>
-    <a href="https://www.owlbear.rodeo/room/qFy8n_nYw-Ow/DUDO%20A%20SPOL" target="_self" rel="noopener noreferrer"
-       style="display:inline-block;padding:14px 36px;background:var(--accent-gold);color:#111;font-family:var(--font-display,Cinzel,serif);font-size:1rem;font-weight:700;letter-spacing:1px;border-radius:4px;text-decoration:none;box-shadow:0 0 20px rgba(180,130,40,0.3);"
-       onmouseover="this.style.background='var(--accent-gold-bright)'" onmouseout="this.style.background='var(--accent-gold)'">
-      ⚔ Otvoriť Mapu
-    </a>
-  </div>
-</div>
-
 <!-- ═══════════════ MODAL ═══════════════ -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
@@ -6712,28 +6706,6 @@ function showTab(tab, btn) {
   if (tab === 'playerbest') renderPlayerBestiary();
   if (tab === 'companions') renderCompanions();
   if (tab === 'wildshape') renderWildShape();
-  if (tab === 'mapa') initMapaTab();
-}
-
-function initMapaTab() {
-  const inOwlbear = window.self !== window.top;
-  const owlDiv = document.getElementById('mapa-owlbear');
-  const saDiv  = document.getElementById('mapa-standalone');
-  owlDiv.style.display = inOwlbear ? 'flex' : 'none';
-  saDiv.style.display  = inOwlbear ? 'none' : 'flex';
-}
-
-function closeMapaPanel() {
-  // Zavrie panel/popover na strane Owlbear — skryje tab-content a deaktivuje tlačidlo
-  const allBtns = document.querySelectorAll('.tab-btn');
-  const allTabs = document.querySelectorAll('.tab-content');
-  allBtns.forEach(b => b.classList.remove('active'));
-  allTabs.forEach(t => t.classList.remove('active'));
-  // Aktivuj prvý tab (Character) aby panel ostal použiteľný
-  const firstBtn = document.querySelector('.tab-btn');
-  const firstTab = document.getElementById('tab-character');
-  if (firstBtn) firstBtn.classList.add('active');
-  if (firstTab) firstTab.classList.add('active');
 }
 
 function toggleSidebar() {
