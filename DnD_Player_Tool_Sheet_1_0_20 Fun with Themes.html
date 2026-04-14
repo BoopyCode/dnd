@@ -1987,6 +1987,37 @@ body {
 .tab-content { display: none; padding: 20px 20px 40px; max-width: 1400px; margin: 0 auto; }
 .tab-content.active { display: block; }
 
+body.owlbear-extension {
+  min-height: 100vh;
+}
+
+body.owlbear-extension .main-content {
+  overflow-x: clip;
+}
+
+body.owlbear-extension .tab-content {
+  max-width: none;
+  width: 100%;
+  padding: 16px 18px 28px;
+}
+
+body.owlbear-extension #tab-mapa {
+  max-width: none;
+}
+
+body.owlbear-extension .mapa-layout {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+body.owlbear-extension .mapa-viewport {
+  min-height: calc(100vh - 190px);
+}
+
+body.owlbear-extension .panel,
+body.owlbear-extension .mapa-card {
+  max-width: none;
+}
+
 /* ─── SECTION HEADERS ─── */
 .section-header {
   font-family: 'Cinzel', serif;
@@ -7283,6 +7314,53 @@ function getMapaElements() {
   };
 }
 
+function isOwlbearExtensionContext() {
+  return new URLSearchParams(window.location.search).has('obrref');
+}
+
+async function maximizeOwlbearActionPopover() {
+  if (!isOwlbearExtensionContext()) return;
+
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    await waitForMapaObrReady(OBR);
+    if (!OBR.isAvailable || !OBR.action) return;
+
+    document.body.classList.add('owlbear-extension');
+
+    const syncActionSize = async () => {
+      const targetWidth = Math.max(1600, Math.min(window.screen.availWidth - 120, 2400));
+      const targetHeight = Math.max(900, Math.min(window.screen.availHeight - 140, 1600));
+      await Promise.all([
+        OBR.action.setWidth(targetWidth),
+        OBR.action.setHeight(targetHeight)
+      ]);
+    };
+
+    await syncActionSize();
+
+    if (!window.__dndObrActionResizeBound) {
+      window.__dndObrActionResizeBound = true;
+      OBR.action.onOpenChange(isOpen => {
+        if (isOpen) void syncActionSize();
+      });
+      window.addEventListener('resize', () => {
+        void syncActionSize();
+      });
+    }
+  } catch (error) {
+    console.warn('Failed to maximize Owlbear action popover', error);
+  }
+}
+
+function waitForMapaObrReady(OBR) {
+  if (!OBR || OBR.isReady) return Promise.resolve();
+  return new Promise(resolve => {
+    OBR.onReady(() => resolve());
+  });
+}
+
 function mapaEscapeHtml(value) {
   return String(value || '')
     .replace(/&/g, '&amp;')
@@ -8156,14 +8234,7 @@ async function loadMapaScene(forceRefit = false) {
       return;
     }
 
-    if (!OBR.isReady) {
-      await new Promise(resolve => {
-        const unsubscribe = OBR.onReady(() => {
-          unsubscribe();
-          resolve();
-        });
-      });
-    }
+    await waitForMapaObrReady(OBR);
 
     const sceneReady = await OBR.scene.isReady();
     if (!sceneReady) {
@@ -8276,9 +8347,10 @@ async function loadMapaScene(forceRefit = false) {
     }
   } catch (error) {
     console.error('Mapa tab failed to load scene', error);
+    const reason = error && error.message ? mapaEscapeHtml(error.message) : 'Neznamy problem v Owlbear SDK.';
     renderMapaMessage(
       'Live mapa sa nepodarilo nacitat.',
-      'Owlbear iframe blok nie je mozne vlozit priamo. Tento tab teraz renderuje scenu cez SDK, ale inicializacia zlyhala.'
+      `Owlbear iframe blok nie je mozne vlozit priamo. Tento tab teraz renderuje scenu cez SDK, ale inicializacia zlyhala.<br><br><strong>Detail:</strong> ${reason}`
     );
   }
 }
@@ -13578,6 +13650,7 @@ function uploadCombatantPhoto(idx) {
 // ═══════════════════════════════════════════
 loadData();
 initAll();
+void maximizeOwlbearActionPopover();
 // Render compendium lists on page load so they appear immediately
 setTimeout(() => { renderSpellList(); renderItemList(); }, 0);
 
