@@ -6507,6 +6507,7 @@ input[type="checkbox"] {
 <div id="tab-mapa" class="tab-content">
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
     <div class="section-header">🗺 Mapa kampane</div>
+    <button class="btn btn-silver btn-sm" type="button" onclick="openMapaInNewTab()">↗ Novy tab</button>
   </div>
   <div class="panel" style="padding:12px;overflow:hidden;min-height:70vh;">
     <div class="mapa-layout">
@@ -7336,16 +7337,32 @@ function isOwlbearExtensionContext() {
   return new URLSearchParams(window.location.search).has('obrref');
 }
 
+function isMapaPopoutContext() {
+  return new URLSearchParams(window.location.search).has('mapa_popout');
+}
+
+function openMapaInNewTab() {
+  const url = new URL(window.location.href);
+  url.searchParams.set('mapa_popout', '1');
+  const popup = window.open(url.toString(), '_blank');
+  if (popup) {
+    showToast('Mapa otvorena v novom tabu');
+    return;
+  }
+  showToast('Prehliadac zablokoval otvorenie noveho tabu');
+}
+
 async function maximizeOwlbearActionPopover() {
   if (!isOwlbearExtensionContext()) return;
+
+  document.body.classList.add('owlbear-extension');
+  if (window.self === window.top) return;
 
   try {
     const sdk = await ensureMapaSdk();
     const OBR = sdk.default;
     await waitForMapaObrReady(OBR);
     if (!OBR.isAvailable || !OBR.action) return;
-
-    document.body.classList.add('owlbear-extension');
 
     const syncActionSize = async () => {
       const targetWidth = Math.max(1600, Math.min(window.screen.availWidth - 120, 2400));
@@ -12350,6 +12367,11 @@ function initAll() {
   // Food/water bars
   updateFoodBar();
   syncFoodFromInventory();
+
+  if (isMapaPopoutContext()) {
+    const mapaBtn = document.querySelector('.tab-btn[data-label="Mapa"]');
+    showTab('mapa', mapaBtn || null);
+  }
 }
 
 // Hook currency calcGP on input
