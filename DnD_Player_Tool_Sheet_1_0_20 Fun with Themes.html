@@ -2018,6 +2018,447 @@ body {
 }
 .panel-sm { padding: 12px; }
 
+/* ─── MAP VIEWER ─── */
+.mapa-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.mapa-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mapa-tool-btn,
+.mapa-layer-btn {
+  background: linear-gradient(135deg, #1c160d, #120d07);
+  border: 1px solid var(--border-dark);
+  color: var(--text-secondary);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: border-color .18s, color .18s, background .18s, box-shadow .18s;
+}
+
+.mapa-tool-btn:hover,
+.mapa-layer-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--accent-gold-bright);
+}
+
+.mapa-layer-btn.active,
+.mapa-tool-btn.active {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold-bright);
+  background: linear-gradient(135deg, #2a2010, #181106);
+  box-shadow: 0 0 12px rgba(212,168,67,0.15);
+}
+
+.mapa-auto-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(135deg, #15110a, #0d0905);
+  color: var(--text-secondary);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mapa-auto-refresh input {
+  accent-color: var(--accent-gold);
+}
+
+.mapa-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.mapa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border-dark);
+  border-radius: 999px;
+  padding: 5px 10px;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.18);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mapa-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.mapa-stage {
+  min-width: 0;
+}
+
+.mapa-sidepanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.mapa-card {
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(24,18,10,0.7), rgba(9,8,6,0.92));
+  padding: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.mapa-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--accent-gold-bright);
+  margin-bottom: 10px;
+}
+
+.mapa-card-subtle {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.mapa-inspector-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-dark);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.04), transparent 46%),
+    linear-gradient(180deg, #121922, #090c10 68%, #06080a);
+  margin-bottom: 10px;
+}
+
+.mapa-inspector-media img,
+.mapa-inspector-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.mapa-chip-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.mapa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-dark);
+  background: rgba(0,0,0,0.22);
+  color: var(--text-secondary);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.mapa-kv {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 6px 10px;
+  align-items: start;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.mapa-kv-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.mapa-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.mapa-viewport {
+  position: relative;
+  overflow: hidden;
+  min-height: 640px;
+  height: calc(100vh - 300px);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 45%),
+    linear-gradient(180deg, #10141b, #07090d 60%, #050608);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.mapa-viewport.dragging {
+  cursor: grabbing;
+}
+
+.mapa-scene-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.mapa-grid-overlay,
+.mapa-fog-overlay,
+.mapa-measure-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mapa-grid-overlay {
+  overflow: hidden;
+}
+
+.mapa-grid-overlay svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.72;
+}
+
+.mapa-fog-overlay {
+  transition: opacity .18s ease;
+}
+
+.mapa-measure-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(212,168,67,0.95));
+  transform-origin: left center;
+  box-shadow: 0 0 10px rgba(212,168,67,0.55);
+}
+
+.mapa-measure-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.92);
+  background: rgba(212,168,67,0.85);
+  box-shadow: 0 0 12px rgba(212,168,67,0.55);
+  transform: translate(-50%, -50%);
+}
+
+.mapa-measure-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(7,8,10,0.88);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--accent-gold-bright);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mapa-item-shell {
+  position: absolute;
+  transform-origin: center center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.mapa-item-shell::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+
+.mapa-item-shell:hover::after {
+  border-color: rgba(255,255,255,0.22);
+}
+
+.mapa-item-shell.is-selected::after {
+  border-color: rgba(212,168,67,0.95);
+  box-shadow: 0 0 16px rgba(212,168,67,0.45);
+}
+
+.mapa-item-shell img,
+.mapa-item-shell video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.mapa-item-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(5,7,10,0.82);
+  color: #e7dcc5;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+}
+
+.mapa-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(6px);
+}
+
+.mapa-entity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 280px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.mapa-entity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: border-color .16s ease, background .16s ease, color .16s ease;
+}
+
+.mapa-entity-row:hover {
+  border-color: var(--border-gold);
+  background: rgba(212,168,67,0.05);
+}
+
+.mapa-entity-row.active {
+  border-color: var(--accent-gold);
+  background: rgba(212,168,67,0.1);
+}
+
+.mapa-entity-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--accent-gold);
+  box-shadow: 0 0 10px rgba(212,168,67,0.25);
+}
+
+.mapa-entity-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.mapa-entity-name {
+  display: block;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mapa-entity-meta {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.mapa-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border-dark);
+  background: rgba(0,0,0,0.22);
+  color: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .mapa-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa-viewport {
+    min-height: 460px;
+    height: 62vh;
+  }
+
+  .mapa-toolbar {
+    align-items: stretch;
+  }
+
+  .mapa-toolbar-group {
+    width: 100%;
+  }
+}
+
 /* ─── GRID HELPERS ─── */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
@@ -6018,17 +6459,75 @@ input[type="checkbox"] {
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
     <div class="section-header">🗺 Mapa kampane</div>
   </div>
-  <div class="panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;gap:20px;text-align:center;">
-    <div style="font-size:72px;">🗺</div>
-    <div style="font-family:var(--font-display,Cinzel,serif);font-size:1.3rem;color:var(--accent-gold-bright);letter-spacing:2px;">DUDO A SPOL</div>
-    <div style="color:var(--text-secondary);font-size:0.9rem;max-width:380px;line-height:1.7;">
-      Interaktívna mapa kampane beží na Owlbear Rodeo.<br>
-      Klikni nižšie — mapa sa otvorí v novom tabe, sheet ostane otvorený.
+  <div class="panel" style="padding:12px;overflow:hidden;min-height:70vh;">
+    <div class="mapa-layout">
+      <div class="mapa-stage">
+        <div class="mapa-toolbar">
+          <div class="mapa-toolbar-group">
+            <button class="mapa-tool-btn" type="button" onclick="loadMapaScene(true)">↻ Obnovit</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaFitScene(true)">⛶ Fit</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaResetZoom()">100%</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaZoomBy(0.85)">−</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaZoomBy(1.15)">+</button>
+            <button id="mapaMeasureBtn" class="mapa-tool-btn" type="button" onclick="mapaToggleMeasureMode()">📏 Meraj</button>
+            <button id="mapaFollowToolbarBtn" class="mapa-tool-btn" type="button" onclick="mapaToggleFollowSelected()">FOLLOW</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaClearMeasurement()">✕ Zmaz meranie</button>
+          </div>
+          <div class="mapa-toolbar-group">
+            <button id="mapaGridBtn" class="mapa-tool-btn active" type="button" onclick="toggleMapaGrid()">GRID</button>
+            <button id="mapaFogBtn" class="mapa-tool-btn active" type="button" onclick="toggleMapaFog()">FOG</button>
+            <button id="mapaLabelsBtn" class="mapa-tool-btn active" type="button" onclick="toggleMapaLabels()">LABELS</button>
+            <button id="mapaCharOnlyBtn" class="mapa-tool-btn" type="button" onclick="mapaSetTokenFilter(mapaViewState.tokenFilter === 'characters' ? 'all' : 'characters')">CHAR ONLY</button>
+            <button class="mapa-layer-btn active" type="button" data-layer="MAP" onclick="toggleMapaLayer('MAP')">MAP</button>
+            <button class="mapa-layer-btn active" type="button" data-layer="PROP" onclick="toggleMapaLayer('PROP')">PROP</button>
+            <button class="mapa-layer-btn active" type="button" data-layer="MOUNT" onclick="toggleMapaLayer('MOUNT')">MOUNT</button>
+            <button class="mapa-layer-btn active" type="button" data-layer="CHARACTER" onclick="toggleMapaLayer('CHARACTER')">CHAR</button>
+            <label class="mapa-auto-refresh">
+              <input id="mapaAutoRefresh" type="checkbox" checked onchange="setMapaAutoRefresh(this.checked)">
+              AUTO
+            </label>
+          </div>
+        </div>
+        <div class="mapa-status-row">
+          <div id="mapaStatus" style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;color:var(--text-muted);">Mapa sa nacita po otvoreni tabu v Owlbear.</div>
+          <div id="mapaMeta" class="mapa-pill">READY</div>
+        </div>
+        <div id="mapaViewport" class="mapa-viewport">
+          <div id="mapaSceneCanvas" class="mapa-scene-canvas"></div>
+          <div class="mapa-hint">drag = posun · koliesko = zoom · klik token = focus · dvojklik = fit</div>
+        </div>
+      </div>
+      <div class="mapa-sidepanel">
+        <div class="mapa-card">
+          <div class="mapa-card-title">Focus</div>
+          <div id="mapaSelectionCard" class="mapa-card-subtle">Klikni token alebo radok v zozname a zobrazia sa detaily vybrateho objektu.</div>
+          <div id="mapaSelectionActions" class="mapa-action-row" style="display:none;">
+            <button class="mapa-tool-btn" type="button" onclick="mapaCenterSelected()">Center</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaSelectCurrentToken()">Select v Owlbear</button>
+            <button id="mapaFollowBtn" class="mapa-tool-btn" type="button" onclick="mapaToggleFollowSelected()">Follow</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaMeasureFromSelected()">Meraj od tokenu</button>
+            <button class="mapa-tool-btn" type="button" onclick="mapaClearSelection()">Clear</button>
+          </div>
+        </div>
+        <div class="mapa-card">
+          <div class="mapa-card-title">Meranie</div>
+          <div id="mapaMeasureStatus" class="mapa-card-subtle">Rezime merania sa zobrazi tu. Zapni Meraj a klikni dva body na scene.</div>
+          <div id="mapaMeasureValue" class="mapa-pill" style="margin-top:10px;">OFF</div>
+        </div>
+        <div class="mapa-card">
+          <div class="mapa-card-title">Tokeny v scene</div>
+          <div id="mapaTokenList" class="mapa-entity-list">
+            <div class="mapa-card-subtle">Tokeny sa nacitaju po otvoreni mapy v Owlbear.</div>
+          </div>
+        </div>
+        <div class="mapa-card">
+          <div class="mapa-card-title">Party</div>
+          <div id="mapaPartyList" class="mapa-entity-list">
+            <div class="mapa-card-subtle">Zoznam hracov v room sa zobrazi po inicializacii Owlbear SDK.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <a href="https://www.owlbear.rodeo/room/qFy8n_nYw-Ow/DUDO%20A%20SPOL" target="_blank" rel="noopener noreferrer"
-       class="btn" style="padding:14px 40px;font-size:1rem;font-weight:700;letter-spacing:1px;text-decoration:none;">
-      ⚔ Otvoriť Mapu
-    </a>
   </div>
 </div>
 
@@ -6496,6 +6995,50 @@ let data = {};
 let selectedDie = 20;
 let autoSaveTimer = null;
 let attuneState = [false, false, false];
+let mapaSdkPromise = null;
+let mapaSceneSubscriptionActive = false;
+const MAPA_SCENE_PADDING = 80;
+const mapaViewState = {
+  items: [],
+  bounds: null,
+  sceneWidth: 0,
+  sceneHeight: 0,
+  scale: 1,
+  fitScale: 1,
+  offsetX: 0,
+  offsetY: 0,
+  minScale: 0.08,
+  maxScale: 5,
+  manualView: false,
+  autoRefresh: true,
+  interactionsBound: false,
+  dragging: false,
+  dragPointerId: null,
+  dragStartX: 0,
+  dragStartY: 0,
+  dragOriginX: 0,
+  dragOriginY: 0,
+  dragMoved: false,
+  refreshTimer: null,
+  layers: { MAP: true, PROP: true, MOUNT: true, CHARACTER: true },
+  grid: null,
+  fog: null,
+  gridEnabled: true,
+  fogEnabled: true,
+  labelsEnabled: true,
+  selectedItemId: '',
+  playerSelection: [],
+  playerName: '',
+  playerColor: '#c0a040',
+  party: [],
+  tokenFilter: 'all',
+  followSelected: false,
+  measureMode: false,
+  measureStart: null,
+  measureEnd: null,
+  measurePreview: null,
+  measureText: ''
+};
 
 const CONDITIONS = ['Blinded','Charmed','Deafened','Exhaustion','Frightened','Grappled','Incapacitated','Invisible','Paralyzed','Petrified','Poisoned','Prone','Restrained','Stunned','Unconscious'];
 const DAMAGE_TYPES = ['Acid','Bludgeoning','Cold','Fire','Force','Lightning','Necrotic','Piercing','Poison','Psychic','Radiant','Slashing','Thunder'];
@@ -6698,6 +7241,7 @@ function showTab(tab, btn) {
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   if (btn) btn.classList.add('active');
+  if (tab === 'mapa') loadMapaScene();
   if (tab === 'spelllist') renderSpellList();
   if (tab === 'itemdb') { updateSubcategoryFilter(); renderItemList(); }
   if (tab === 'bestiary') renderBestiary();
@@ -6706,6 +7250,1037 @@ function showTab(tab, btn) {
   if (tab === 'playerbest') renderPlayerBestiary();
   if (tab === 'companions') renderCompanions();
   if (tab === 'wildshape') renderWildShape();
+}
+
+async function ensureMapaSdk() {
+  if (!mapaSdkPromise) {
+    mapaSdkPromise = import('https://cdn.jsdelivr.net/npm/@owlbear-rodeo/sdk/+esm');
+  }
+  return mapaSdkPromise;
+}
+
+function getMapaElements() {
+  return {
+    tab: document.getElementById('tab-mapa'),
+    status: document.getElementById('mapaStatus'),
+    meta: document.getElementById('mapaMeta'),
+    viewport: document.getElementById('mapaViewport'),
+    canvas: document.getElementById('mapaSceneCanvas'),
+    autoRefresh: document.getElementById('mapaAutoRefresh'),
+    gridBtn: document.getElementById('mapaGridBtn'),
+    fogBtn: document.getElementById('mapaFogBtn'),
+    labelsBtn: document.getElementById('mapaLabelsBtn'),
+    charOnlyBtn: document.getElementById('mapaCharOnlyBtn'),
+    followToolbarBtn: document.getElementById('mapaFollowToolbarBtn'),
+    measureBtn: document.getElementById('mapaMeasureBtn'),
+    selectionCard: document.getElementById('mapaSelectionCard'),
+    selectionActions: document.getElementById('mapaSelectionActions'),
+    followBtn: document.getElementById('mapaFollowBtn'),
+    tokenList: document.getElementById('mapaTokenList'),
+    partyList: document.getElementById('mapaPartyList'),
+    measureStatus: document.getElementById('mapaMeasureStatus'),
+    measureValue: document.getElementById('mapaMeasureValue')
+  };
+}
+
+function mapaEscapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function mapaNormalizeGrid(grid) {
+  if (!grid) return null;
+  return {
+    dpi: grid.dpi || 0,
+    type: grid.type || 'SQUARE',
+    measurement: grid.measurement || 'EUCLIDEAN',
+    scale: grid.scale && typeof grid.scale === 'object' ? grid.scale : { raw: String(grid.scale || ''), parsed: null },
+    style: grid.style || {
+      lineType: 'SOLID',
+      lineOpacity: 0.45,
+      lineColor: 'LIGHT',
+      lineWidth: 1
+    }
+  };
+}
+
+function mapaNormalizeFog(fog) {
+  if (!fog) return null;
+  return {
+    filled: !!fog.filled,
+    style: fog.style || { color: 'rgba(0,0,0,0.65)', strokeWidth: 32 }
+  };
+}
+
+function mapaGetVisibleItems() {
+  return mapaViewState.items.filter(item => mapaViewState.layers[item.layer]);
+}
+
+function mapaGetTokenFilterItems(items) {
+  const source = items || mapaGetVisibleItems();
+  if (mapaViewState.tokenFilter !== 'characters') return source;
+  return source.filter(item => item.layer === 'MAP' || item.layer === 'CHARACTER');
+}
+
+function mapaFindItemById(itemId) {
+  return mapaViewState.items.find(item => item.id === itemId) || null;
+}
+
+function mapaSceneToCanvasPoint(position) {
+  if (!position || !mapaViewState.bounds) return { x: 0, y: 0 };
+  return {
+    x: position.x - mapaViewState.bounds.min.x + MAPA_SCENE_PADDING,
+    y: position.y - mapaViewState.bounds.min.y + MAPA_SCENE_PADDING
+  };
+}
+
+function mapaViewportToScenePoint(localX, localY) {
+  if (!mapaViewState.bounds || !mapaViewState.scale) return null;
+  return {
+    x: (localX - mapaViewState.offsetX) / mapaViewState.scale + mapaViewState.bounds.min.x - MAPA_SCENE_PADDING,
+    y: (localY - mapaViewState.offsetY) / mapaViewState.scale + mapaViewState.bounds.min.y - MAPA_SCENE_PADDING
+  };
+}
+
+function mapaGetWorldBounds() {
+  if (!mapaViewState.bounds) return null;
+  const maxX = mapaViewState.bounds.max ? mapaViewState.bounds.max.x : mapaViewState.bounds.min.x + mapaViewState.bounds.width;
+  const maxY = mapaViewState.bounds.max ? mapaViewState.bounds.max.y : mapaViewState.bounds.min.y + mapaViewState.bounds.height;
+  return {
+    minX: mapaViewState.bounds.min.x - MAPA_SCENE_PADDING,
+    minY: mapaViewState.bounds.min.y - MAPA_SCENE_PADDING,
+    maxX: maxX + MAPA_SCENE_PADDING,
+    maxY: maxY + MAPA_SCENE_PADDING
+  };
+}
+
+function mapaWorldToCanvasPoint(worldX, worldY) {
+  if (!mapaViewState.bounds) return { x: 0, y: 0 };
+  return {
+    x: worldX - mapaViewState.bounds.min.x + MAPA_SCENE_PADDING,
+    y: worldY - mapaViewState.bounds.min.y + MAPA_SCENE_PADDING
+  };
+}
+
+function mapaGridParity(value) {
+  return ((value % 2) + 2) % 2;
+}
+
+function mapaPushSvgLine(lines, x1, y1, x2, y2) {
+  lines.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`);
+}
+
+function mapaPushSvgPolygon(lines, points) {
+  lines.push(`<polygon points="${points.map(point => point.join(',')).join(' ')}" fill="none" />`);
+}
+
+function mapaBuildSquareGrid(lines, worldBounds) {
+  const step = mapaViewState.grid.dpi;
+  const startCol = Math.floor(worldBounds.minX / step) - 1;
+  const endCol = Math.ceil(worldBounds.maxX / step) + 1;
+  const startRow = Math.floor(worldBounds.minY / step) - 1;
+  const endRow = Math.ceil(worldBounds.maxY / step) + 1;
+
+  for (let col = startCol; col <= endCol; col += 1) {
+    const point = mapaWorldToCanvasPoint(col * step, worldBounds.minY);
+    mapaPushSvgLine(lines, point.x, 0, point.x, mapaViewState.sceneHeight);
+  }
+
+  for (let row = startRow; row <= endRow; row += 1) {
+    const point = mapaWorldToCanvasPoint(worldBounds.minX, row * step);
+    mapaPushSvgLine(lines, 0, point.y, mapaViewState.sceneWidth, point.y);
+  }
+}
+
+function mapaBuildVerticalHexGrid(lines, worldBounds) {
+  const hexWidth = mapaViewState.grid.dpi;
+  const side = hexWidth / Math.sqrt(3);
+  const hexHeight = side * 2;
+  const stepX = hexWidth * 0.75;
+  const stepY = hexHeight;
+  const startCol = Math.floor((worldBounds.minX - hexWidth) / stepX) - 1;
+  const endCol = Math.ceil((worldBounds.maxX + hexWidth) / stepX) + 1;
+
+  for (let col = startCol; col <= endCol; col += 1) {
+    const centerX = col * stepX;
+    const rowOffset = mapaGridParity(col) ? hexHeight / 2 : 0;
+    const startRow = Math.floor((worldBounds.minY - hexHeight - rowOffset) / stepY) - 1;
+    const endRow = Math.ceil((worldBounds.maxY + hexHeight - rowOffset) / stepY) + 1;
+
+    for (let row = startRow; row <= endRow; row += 1) {
+      const centerY = row * stepY + rowOffset;
+      const points = [
+        mapaWorldToCanvasPoint(centerX, centerY - side),
+        mapaWorldToCanvasPoint(centerX + hexWidth / 2, centerY - side / 2),
+        mapaWorldToCanvasPoint(centerX + hexWidth / 2, centerY + side / 2),
+        mapaWorldToCanvasPoint(centerX, centerY + side),
+        mapaWorldToCanvasPoint(centerX - hexWidth / 2, centerY + side / 2),
+        mapaWorldToCanvasPoint(centerX - hexWidth / 2, centerY - side / 2)
+      ].map(point => [point.x, point.y]);
+      mapaPushSvgPolygon(lines, points);
+    }
+  }
+}
+
+function mapaBuildHorizontalHexGrid(lines, worldBounds) {
+  const hexHeight = mapaViewState.grid.dpi;
+  const side = hexHeight / Math.sqrt(3);
+  const hexWidth = side * 2;
+  const stepX = hexWidth;
+  const stepY = hexHeight * 0.75;
+  const startRow = Math.floor((worldBounds.minY - hexHeight) / stepY) - 1;
+  const endRow = Math.ceil((worldBounds.maxY + hexHeight) / stepY) + 1;
+
+  for (let row = startRow; row <= endRow; row += 1) {
+    const centerY = row * stepY;
+    const colOffset = mapaGridParity(row) ? hexWidth / 2 : 0;
+    const startCol = Math.floor((worldBounds.minX - hexWidth - colOffset) / stepX) - 1;
+    const endCol = Math.ceil((worldBounds.maxX + hexWidth - colOffset) / stepX) + 1;
+
+    for (let col = startCol; col <= endCol; col += 1) {
+      const centerX = col * stepX + colOffset;
+      const points = [
+        mapaWorldToCanvasPoint(centerX - hexWidth / 2, centerY),
+        mapaWorldToCanvasPoint(centerX - hexWidth / 4, centerY - hexHeight / 2),
+        mapaWorldToCanvasPoint(centerX + hexWidth / 4, centerY - hexHeight / 2),
+        mapaWorldToCanvasPoint(centerX + hexWidth / 2, centerY),
+        mapaWorldToCanvasPoint(centerX + hexWidth / 4, centerY + hexHeight / 2),
+        mapaWorldToCanvasPoint(centerX - hexWidth / 4, centerY + hexHeight / 2)
+      ].map(point => [point.x, point.y]);
+      mapaPushSvgPolygon(lines, points);
+    }
+  }
+}
+
+function mapaBuildDiamondGrid(lines, worldBounds) {
+  const diamondHeight = mapaViewState.grid.dpi;
+  const diamondWidth = mapaViewState.grid.type === 'DIMETRIC' ? diamondHeight * 2.5 : diamondHeight * 2;
+  const startRow = Math.floor((worldBounds.minY - diamondHeight) / diamondHeight) - 1;
+  const endRow = Math.ceil((worldBounds.maxY + diamondHeight) / diamondHeight) + 1;
+  const startCol = Math.floor((worldBounds.minX - diamondWidth) / diamondWidth) - 1;
+  const endCol = Math.ceil((worldBounds.maxX + diamondWidth) / diamondWidth) + 1;
+
+  for (let row = startRow; row <= endRow; row += 1) {
+    for (let col = startCol; col <= endCol; col += 1) {
+      const originX = col * diamondWidth;
+      const originY = row * diamondHeight;
+      const points = [
+        mapaWorldToCanvasPoint(originX + diamondWidth / 2, originY),
+        mapaWorldToCanvasPoint(originX + diamondWidth, originY + diamondHeight / 2),
+        mapaWorldToCanvasPoint(originX + diamondWidth / 2, originY + diamondHeight),
+        mapaWorldToCanvasPoint(originX, originY + diamondHeight / 2)
+      ].map(point => [point.x, point.y]);
+      mapaPushSvgPolygon(lines, points);
+    }
+  }
+}
+
+function mapaFormatApproxDistance(start, end) {
+  if (!start || !end) return '';
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const pixels = Math.hypot(dx, dy);
+  if (mapaViewState.grid && mapaViewState.grid.dpi > 0) {
+    const cells = pixels / mapaViewState.grid.dpi;
+    const parsed = mapaViewState.grid.scale && mapaViewState.grid.scale.parsed;
+    if (parsed && parsed.multiplier && parsed.unit) {
+      const value = cells * parsed.multiplier;
+      const digits = value < 10 ? 1 : 0;
+      return `${value.toFixed(digits)} ${parsed.unit} approx`;
+    }
+    return `${cells.toFixed(1)} cells`;
+  }
+  return `${Math.round(pixels)} px`;
+}
+
+function mapaFormatMeasuredDistance(distance) {
+  if (distance === null || distance === undefined || Number.isNaN(distance)) return '';
+  const parsed = mapaViewState.grid && mapaViewState.grid.scale ? mapaViewState.grid.scale.parsed : null;
+  if (parsed && parsed.multiplier && parsed.unit) {
+    const value = distance * parsed.multiplier;
+    const digits = value < 10 ? 1 : 0;
+    return `${value.toFixed(digits)} ${parsed.unit} · ${distance.toFixed(1)} cells`;
+  }
+  return `${distance.toFixed(1)} cells`;
+}
+
+function mapaGridColorToStroke(color) {
+  if (!color) return 'rgba(255,255,255,0.28)';
+  if (color === 'DARK') return 'rgba(0,0,0,0.55)';
+  if (color === 'LIGHT') return 'rgba(255,255,255,0.35)';
+  if (color === 'HIGHLIGHT') return 'rgba(212,168,67,0.65)';
+  return color;
+}
+
+function mapaGridDashArray(lineType, lineWidth) {
+  if (lineType === 'DASHED') return `${Math.max(6, lineWidth * 5)} ${Math.max(4, lineWidth * 4)}`;
+  if (lineType === 'DOTTED') return `${Math.max(1, lineWidth)} ${Math.max(5, lineWidth * 4)}`;
+  return '';
+}
+
+function mapaBuildGridSvg() {
+  const grid = mapaViewState.grid;
+  if (!mapaViewState.gridEnabled || !grid || !grid.dpi || !mapaViewState.bounds) return '';
+
+  const width = mapaViewState.sceneWidth;
+  const height = mapaViewState.sceneHeight;
+  const worldBounds = mapaGetWorldBounds();
+  if (!worldBounds) return '';
+  const stroke = mapaGridColorToStroke(grid.style.lineColor);
+  const strokeWidth = Math.max(1, grid.style.lineWidth || 1);
+  const opacity = Math.min(0.9, Math.max(0.1, grid.style.lineOpacity || 0.4));
+  const dashArray = mapaGridDashArray(grid.style.lineType, strokeWidth);
+  const dashAttr = dashArray ? ` stroke-dasharray="${dashArray}"` : '';
+  const lines = [];
+
+  if (grid.type === 'SQUARE') {
+    mapaBuildSquareGrid(lines, worldBounds);
+  } else if (grid.type === 'HEX_VERTICAL') {
+    mapaBuildVerticalHexGrid(lines, worldBounds);
+  } else if (grid.type === 'HEX_HORIZONTAL') {
+    mapaBuildHorizontalHexGrid(lines, worldBounds);
+  } else {
+    mapaBuildDiamondGrid(lines, worldBounds);
+  }
+
+  return `<div class="mapa-grid-overlay"><svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="${stroke}" stroke-width="${strokeWidth}" opacity="${opacity}"${dashAttr}>${lines.join('')}</g></svg></div>`;
+}
+
+function mapaBuildFogOverlay() {
+  if (!mapaViewState.fogEnabled || !mapaViewState.fog || !mapaViewState.fog.filled) return '';
+  const color = mapaViewState.fog.style && mapaViewState.fog.style.color ? mapaViewState.fog.style.color : 'rgba(0,0,0,0.68)';
+  return `<div class="mapa-fog-overlay" style="background:
+    linear-gradient(180deg, rgba(0,0,0,0.14), rgba(0,0,0,0.24)),
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px),
+    ${color};opacity:0.28;"></div>`;
+}
+
+function mapaBuildMeasurementOverlay() {
+  const start = mapaViewState.measureStart;
+  const end = mapaViewState.measurePreview || mapaViewState.measureEnd;
+  if (!start) return '';
+
+  const startPt = mapaSceneToCanvasPoint(start);
+  const parts = [`<div class="mapa-measure-dot" style="left:${startPt.x}px;top:${startPt.y}px;"></div>`];
+  if (!end) return `<div class="mapa-measure-overlay">${parts.join('')}</div>`;
+
+  const endPt = mapaSceneToCanvasPoint(end);
+  const dx = endPt.x - startPt.x;
+  const dy = endPt.y - startPt.y;
+  const length = Math.hypot(dx, dy);
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+  const midX = startPt.x + dx / 2;
+  const midY = startPt.y + dy / 2;
+  const label = mapaEscapeHtml(mapaViewState.measureText || mapaFormatApproxDistance(start, end));
+
+  parts.push(`<div class="mapa-measure-line" style="left:${startPt.x}px;top:${startPt.y}px;width:${length}px;transform:rotate(${angle}deg);"></div>`);
+  parts.push(`<div class="mapa-measure-dot" style="left:${endPt.x}px;top:${endPt.y}px;"></div>`);
+  parts.push(`<div class="mapa-measure-label" style="left:${midX}px;top:${midY - 16}px;">${label}</div>`);
+  return `<div class="mapa-measure-overlay">${parts.join('')}</div>`;
+}
+
+function updateMapaControls() {
+  const { meta, viewport, autoRefresh, gridBtn, fogBtn, labelsBtn, charOnlyBtn, followToolbarBtn, measureBtn, measureValue, followBtn } = getMapaElements();
+  document.querySelectorAll('#tab-mapa .mapa-layer-btn').forEach(btn => {
+    const layer = btn.dataset.layer;
+    btn.classList.toggle('active', !!mapaViewState.layers[layer]);
+  });
+  if (autoRefresh) autoRefresh.checked = mapaViewState.autoRefresh;
+  if (viewport) viewport.classList.toggle('dragging', mapaViewState.dragging);
+  if (gridBtn) gridBtn.classList.toggle('active', mapaViewState.gridEnabled);
+  if (fogBtn) fogBtn.classList.toggle('active', mapaViewState.fogEnabled);
+  if (labelsBtn) labelsBtn.classList.toggle('active', mapaViewState.labelsEnabled);
+  if (charOnlyBtn) charOnlyBtn.classList.toggle('active', mapaViewState.tokenFilter === 'characters');
+  if (followToolbarBtn) {
+    followToolbarBtn.classList.toggle('active', mapaViewState.followSelected);
+    followToolbarBtn.textContent = mapaViewState.followSelected ? 'FOLLOW ON' : 'FOLLOW';
+  }
+  if (followBtn) {
+    followBtn.classList.toggle('active', mapaViewState.followSelected);
+    followBtn.textContent = mapaViewState.followSelected ? 'Follow ON' : 'Follow';
+  }
+  if (measureBtn) measureBtn.classList.toggle('active', mapaViewState.measureMode);
+  if (measureValue) measureValue.textContent = mapaViewState.measureMode ? (mapaViewState.measureText || 'ARMED') : (mapaViewState.measureText || 'OFF');
+  if (meta) {
+    const visibleCount = mapaGetTokenFilterItems().length;
+    const gridType = mapaViewState.grid ? mapaViewState.grid.type.replace('_', ' ') : 'NO GRID';
+    const fogState = mapaViewState.fog && mapaViewState.fog.filled ? 'FOG' : 'CLEAR';
+    const filterState = mapaViewState.tokenFilter === 'characters' ? 'CHAR' : 'ALL';
+    meta.textContent = `${Math.round(mapaViewState.scale * 100)}% · ${visibleCount}/${mapaViewState.items.length} · ${gridType} · ${fogState} · ${filterState}`;
+  }
+}
+
+function renderMapaSidebar() {
+  const { selectionCard, selectionActions, tokenList, partyList, measureStatus, measureValue } = getMapaElements();
+  const selectedItem = mapaFindItemById(mapaViewState.selectedItemId);
+  const tokenItems = mapaGetTokenFilterItems(mapaViewState.items)
+    .filter(item => item.layer !== 'MAP')
+    .sort((a, b) => {
+      const layerOrder = { CHARACTER: 0, MOUNT: 1, PROP: 2 };
+      return (layerOrder[a.layer] ?? 5) - (layerOrder[b.layer] ?? 5) || a.zIndex - b.zIndex;
+    });
+
+  if (selectionCard) {
+    if (!selectedItem) {
+      selectionCard.innerHTML = 'Klikni token alebo radok v zozname a zobrazia sa detaily vybrateho objektu.';
+      if (selectionActions) selectionActions.style.display = 'none';
+    } else {
+      const mediaType = selectedItem.image && selectedItem.image.mime ? selectedItem.image.mime : 'image';
+      const posX = Math.round(selectedItem.position.x);
+      const posY = Math.round(selectedItem.position.y);
+      const scaleX = selectedItem.scale?.x ?? 1;
+      const scaleY = selectedItem.scale?.y ?? 1;
+      const previewUrl = mapaEscapeHtml(selectedItem.image?.url || '');
+      const previewMedia = mediaType.startsWith('video/')
+        ? `<video src="${previewUrl}" autoplay loop muted playsinline></video>`
+        : `<img src="${previewUrl}" alt="${mapaEscapeHtml(selectedItem.name || 'Token preview')}">`;
+      const distanceFromOrigin = mapaFormatApproxDistance({ x: 0, y: 0 }, selectedItem.position);
+      selectionCard.innerHTML = `
+        <div class="mapa-inspector-media">${previewMedia}</div>
+        <div class="mapa-kv">
+          <div class="mapa-kv-label">Name</div><div>${mapaEscapeHtml(selectedItem.name || 'Untitled token')}</div>
+          <div class="mapa-kv-label">Layer</div><div>${mapaEscapeHtml(selectedItem.layer)}</div>
+          <div class="mapa-kv-label">Media</div><div>${mapaEscapeHtml(mediaType)}</div>
+          <div class="mapa-kv-label">Size</div><div>${Math.round(selectedItem.image.width || 0)} x ${Math.round(selectedItem.image.height || 0)}</div>
+          <div class="mapa-kv-label">Pos</div><div>${posX}, ${posY}</div>
+          <div class="mapa-kv-label">Rotate</div><div>${Math.round(selectedItem.rotation || 0)} deg</div>
+          <div class="mapa-kv-label">Scale</div><div>${scaleX.toFixed(2)} x ${scaleY.toFixed(2)}</div>
+          <div class="mapa-kv-label">Travel</div><div>${mapaEscapeHtml(distanceFromOrigin)}</div>
+        </div>
+        <div class="mapa-chip-row">
+          <div class="mapa-chip">${mapaEscapeHtml(selectedItem.layer)}</div>
+          <div class="mapa-chip">Z ${selectedItem.zIndex}</div>
+          <div class="mapa-chip">${selectedItem.locked ? 'LOCKED' : 'FREE'}</div>
+          <div class="mapa-chip">${selectedItem.visible ? 'VISIBLE' : 'HIDDEN'}</div>
+        </div>`;
+      if (selectionActions) selectionActions.style.display = 'flex';
+    }
+  }
+
+  if (tokenList) {
+    if (!tokenItems.length) {
+      tokenList.innerHTML = '<div class="mapa-card-subtle">V scene nie su ziadne tokeny ani props mimo MAP layeru.</div>';
+    } else {
+      tokenList.innerHTML = tokenItems.map(item => {
+        const activeClass = item.id === mapaViewState.selectedItemId ? ' active' : '';
+        const selectedBadge = mapaViewState.playerSelection.includes(item.id) ? 'SELECTED' : item.layer;
+        return `
+          <button type="button" class="mapa-entity-row${activeClass}" onclick="mapaHandleItemClick('${item.id}')">
+            <span class="mapa-entity-dot" style="background:${mapaGetLayerColor(item.layer)}"></span>
+            <span class="mapa-entity-main">
+              <span class="mapa-entity-name">${mapaEscapeHtml(item.name || 'Untitled token')}</span>
+              <span class="mapa-entity-meta">${mapaEscapeHtml(item.layer)} · Z ${item.zIndex}</span>
+            </span>
+            <span class="mapa-badge">${mapaEscapeHtml(selectedBadge)}</span>
+          </button>`;
+      }).join('');
+    }
+  }
+
+  if (partyList) {
+    if (!mapaViewState.party.length) {
+      const name = mapaViewState.playerName || 'Current player';
+      partyList.innerHTML = `<div class="mapa-card-subtle">Aktivne je len lokalne okno: ${mapaEscapeHtml(name)}.</div>`;
+    } else {
+      partyList.innerHTML = mapaViewState.party.map(player => `
+        <div class="mapa-entity-row">
+          <span class="mapa-entity-dot" style="background:${mapaEscapeHtml(player.color || '#c0a040')}"></span>
+          <span class="mapa-entity-main">
+            <span class="mapa-entity-name">${mapaEscapeHtml(player.name || 'Unknown player')}</span>
+            <span class="mapa-entity-meta">${mapaEscapeHtml(player.role || 'PLAYER')}</span>
+          </span>
+        </div>`).join('');
+    }
+  }
+
+  if (measureStatus) {
+    if (!mapaViewState.measureStart) {
+      measureStatus.textContent = mapaViewState.measureMode
+        ? 'Klikni prvy bod na scene. Druhy klik uzamkne vzdialenost.'
+        : 'Rezime merania sa zobrazi tu. Zapni Meraj a klikni dva body na scene.';
+    } else if (!mapaViewState.measureEnd) {
+      measureStatus.textContent = `Start nastaveny na ${Math.round(mapaViewState.measureStart.x)}, ${Math.round(mapaViewState.measureStart.y)}. Vyber druhy bod.`;
+    } else {
+      measureStatus.textContent = `Meranie od ${Math.round(mapaViewState.measureStart.x)}, ${Math.round(mapaViewState.measureStart.y)} do ${Math.round(mapaViewState.measureEnd.x)}, ${Math.round(mapaViewState.measureEnd.y)}.`;
+    }
+  }
+
+  if (measureValue) {
+    measureValue.textContent = mapaViewState.measureMode ? (mapaViewState.measureText || 'ARMED') : (mapaViewState.measureText || 'OFF');
+  }
+}
+
+function renderMapaMessage(message, details) {
+  const { status, viewport, canvas, meta } = getMapaElements();
+  if (status) status.textContent = message;
+  if (meta) meta.textContent = 'INFO';
+  if (canvas) canvas.innerHTML = '';
+  if (viewport) {
+    viewport.innerHTML = `
+      <div id="mapaSceneCanvas" class="mapa-scene-canvas"></div>
+      <div style="display:flex;align-items:center;justify-content:center;min-height:640px;padding:24px;">
+        <div style="max-width:560px;text-align:center;color:var(--text-secondary);line-height:1.7;">
+          <div style="font-size:52px;margin-bottom:14px;">🗺</div>
+          <div style="font-family:'Cinzel',serif;font-size:18px;color:var(--accent-gold-bright);letter-spacing:2px;margin-bottom:10px;">Mapa kampane</div>
+          <div>${details}</div>
+        </div>
+      </div>
+      <div class="mapa-hint">drag = posun · koliesko = zoom · klik token = focus · dvojklik = fit</div>`;
+  }
+  renderMapaSidebar();
+  updateMapaControls();
+}
+
+function mapaClampScale(scale) {
+  return Math.min(mapaViewState.maxScale, Math.max(mapaViewState.minScale, scale));
+}
+
+function mapaApplyTransform() {
+  const { canvas } = getMapaElements();
+  if (!canvas) return;
+  canvas.style.transform = `translate(${mapaViewState.offsetX}px, ${mapaViewState.offsetY}px) scale(${mapaViewState.scale})`;
+  updateMapaControls();
+}
+
+function mapaFitScene(showToastMsg) {
+  const { viewport } = getMapaElements();
+  if (!viewport || !mapaViewState.sceneWidth || !mapaViewState.sceneHeight) return;
+  const viewportWidth = Math.max(240, viewport.clientWidth - 30);
+  const viewportHeight = Math.max(240, viewport.clientHeight - 30);
+  mapaViewState.fitScale = mapaClampScale(Math.min(viewportWidth / mapaViewState.sceneWidth, viewportHeight / mapaViewState.sceneHeight, 1.4));
+  mapaViewState.scale = mapaViewState.fitScale;
+  mapaViewState.offsetX = (viewport.clientWidth - mapaViewState.sceneWidth * mapaViewState.scale) / 2;
+  mapaViewState.offsetY = (viewport.clientHeight - mapaViewState.sceneHeight * mapaViewState.scale) / 2;
+  mapaViewState.manualView = false;
+  mapaApplyTransform();
+  if (showToastMsg) showToast('Mapa zarovnana na scenu');
+}
+
+function mapaResetZoom() {
+  const { viewport } = getMapaElements();
+  if (!viewport || !mapaViewState.sceneWidth || !mapaViewState.sceneHeight) return;
+  mapaViewState.scale = 1;
+  mapaViewState.offsetX = (viewport.clientWidth - mapaViewState.sceneWidth) / 2;
+  mapaViewState.offsetY = (viewport.clientHeight - mapaViewState.sceneHeight) / 2;
+  mapaViewState.manualView = true;
+  mapaApplyTransform();
+}
+
+function mapaZoomTo(targetScale, focusX, focusY) {
+  const { viewport } = getMapaElements();
+  if (!viewport || !mapaViewState.sceneWidth || !mapaViewState.sceneHeight) return;
+  const nextScale = mapaClampScale(targetScale);
+  const rect = viewport.getBoundingClientRect();
+  const localX = focusX ?? rect.width / 2;
+  const localY = focusY ?? rect.height / 2;
+  const sceneX = (localX - mapaViewState.offsetX) / mapaViewState.scale;
+  const sceneY = (localY - mapaViewState.offsetY) / mapaViewState.scale;
+  mapaViewState.scale = nextScale;
+  mapaViewState.offsetX = localX - sceneX * mapaViewState.scale;
+  mapaViewState.offsetY = localY - sceneY * mapaViewState.scale;
+  mapaViewState.manualView = true;
+  mapaApplyTransform();
+}
+
+function mapaZoomBy(factor) {
+  const { viewport } = getMapaElements();
+  if (!viewport) return;
+  mapaZoomTo(mapaViewState.scale * factor, viewport.clientWidth / 2, viewport.clientHeight / 2);
+}
+
+function setMapaAutoRefresh(enabled) {
+  mapaViewState.autoRefresh = enabled;
+  updateMapaControls();
+  showToast(enabled ? 'Auto refresh mapy zapnuty' : 'Auto refresh mapy vypnuty');
+}
+
+function toggleMapaLayer(layer) {
+  mapaViewState.layers[layer] = !mapaViewState.layers[layer];
+  renderMapaSceneView();
+}
+
+function toggleMapaGrid() {
+  mapaViewState.gridEnabled = !mapaViewState.gridEnabled;
+  renderMapaSceneView();
+}
+
+function toggleMapaFog() {
+  mapaViewState.fogEnabled = !mapaViewState.fogEnabled;
+  renderMapaSceneView();
+}
+
+function toggleMapaLabels() {
+  mapaViewState.labelsEnabled = !mapaViewState.labelsEnabled;
+  renderMapaSceneView();
+}
+
+function mapaGetLayerColor(layer) {
+  if (layer === 'MAP') return '#5aa0ff';
+  if (layer === 'CHARACTER') return '#d4a843';
+  if (layer === 'MOUNT') return '#6bd39b';
+  if (layer === 'PROP') return '#b585ff';
+  return '#888888';
+}
+
+async function mapaHandleItemClick(itemId) {
+  mapaViewState.selectedItemId = itemId;
+  const item = mapaFindItemById(itemId);
+  renderMapaSceneView();
+  if (!item) return;
+
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    if (OBR.isAvailable) {
+      await OBR.player.select([itemId], true);
+      mapaViewState.playerSelection = [itemId];
+    }
+  } catch (error) {
+    console.warn('Failed to sync Owlbear selection', error);
+  }
+
+  renderMapaSidebar();
+}
+
+function mapaCenterOnItem(itemId) {
+  const { viewport } = getMapaElements();
+  const item = mapaFindItemById(itemId);
+  if (!viewport || !item) return;
+  const point = mapaSceneToCanvasPoint(item.position);
+  mapaViewState.offsetX = viewport.clientWidth / 2 - point.x * mapaViewState.scale;
+  mapaViewState.offsetY = viewport.clientHeight / 2 - point.y * mapaViewState.scale;
+  mapaViewState.manualView = true;
+  mapaApplyTransform();
+}
+
+function mapaCenterSelected() {
+  if (!mapaViewState.selectedItemId) return;
+  mapaCenterOnItem(mapaViewState.selectedItemId);
+}
+
+function mapaApplyFollowIfNeeded() {
+  if (!mapaViewState.followSelected || !mapaViewState.selectedItemId) return;
+  const selectedItem = mapaFindItemById(mapaViewState.selectedItemId);
+  if (!selectedItem) return;
+  mapaCenterOnItem(selectedItem.id);
+}
+
+async function mapaClearSelection() {
+  mapaViewState.selectedItemId = '';
+  mapaViewState.playerSelection = [];
+  mapaViewState.followSelected = false;
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    if (OBR.isAvailable) await OBR.player.deselect();
+  } catch (error) {
+    console.warn('Failed to clear Owlbear selection', error);
+  }
+  renderMapaSceneView();
+}
+
+async function mapaSelectCurrentToken() {
+  if (!mapaViewState.selectedItemId) return;
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    if (OBR.isAvailable) {
+      await OBR.player.select([mapaViewState.selectedItemId], true);
+      mapaViewState.playerSelection = [mapaViewState.selectedItemId];
+      renderMapaSidebar();
+      showToast('Token vybraty aj v Owlbear');
+    }
+  } catch (error) {
+    console.warn('Failed to select token in Owlbear', error);
+  }
+}
+
+function mapaToggleFollowSelected() {
+  if (!mapaViewState.selectedItemId) {
+    showToast('Najprv vyber token');
+    return;
+  }
+  mapaViewState.followSelected = !mapaViewState.followSelected;
+  if (mapaViewState.followSelected) mapaApplyFollowIfNeeded();
+  updateMapaControls();
+  renderMapaSidebar();
+  showToast(mapaViewState.followSelected ? 'Follow tokenu zapnuty' : 'Follow tokenu vypnuty');
+}
+
+function mapaSetTokenFilter(mode) {
+  mapaViewState.tokenFilter = mode === 'characters' ? 'characters' : 'all';
+  renderMapaSceneView();
+  showToast(mapaViewState.tokenFilter === 'characters' ? 'Mapa filtruje len character tokeny' : 'Mapa zobrazuje vsetky tokeny');
+}
+
+function mapaMeasureFromSelected() {
+  const selectedItem = mapaFindItemById(mapaViewState.selectedItemId);
+  if (!selectedItem) return;
+  mapaViewState.measureMode = true;
+  mapaViewState.measureStart = { x: selectedItem.position.x, y: selectedItem.position.y };
+  mapaViewState.measureEnd = null;
+  mapaViewState.measurePreview = null;
+  mapaViewState.measureText = selectedItem.name || 'START';
+  renderMapaSceneView();
+  renderMapaSidebar();
+  updateMapaControls();
+  showToast('Meranie zacina na vybranom tokene');
+}
+
+function mapaToggleMeasureMode() {
+  mapaViewState.measureMode = !mapaViewState.measureMode;
+  mapaViewState.measurePreview = null;
+  if (!mapaViewState.measureMode) mapaViewState.measureText = mapaViewState.measureEnd ? mapaViewState.measureText : '';
+  updateMapaControls();
+  renderMapaSidebar();
+  renderMapaSceneView();
+  showToast(mapaViewState.measureMode ? 'Meranie mapy zapnute' : 'Meranie mapy vypnute');
+}
+
+function mapaClearMeasurement() {
+  mapaViewState.measureStart = null;
+  mapaViewState.measureEnd = null;
+  mapaViewState.measurePreview = null;
+  mapaViewState.measureText = '';
+  renderMapaSceneView();
+  renderMapaSidebar();
+}
+
+async function mapaFinalizeMeasurement(start, end) {
+  mapaViewState.measureText = mapaFormatApproxDistance(start, end);
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    if (OBR.isAvailable && OBR.scene && OBR.scene.grid) {
+      const distance = await OBR.scene.grid.getDistance(start, end);
+      mapaViewState.measureText = mapaFormatMeasuredDistance(distance);
+    }
+  } catch (error) {
+    console.warn('Failed to get grid distance from Owlbear', error);
+  }
+  updateMapaControls();
+  renderMapaSidebar();
+  renderMapaSceneView();
+}
+
+function scheduleMapaRefresh(delay = 180) {
+  if (!mapaViewState.autoRefresh) return;
+  clearTimeout(mapaViewState.refreshTimer);
+  mapaViewState.refreshTimer = setTimeout(() => {
+    const { tab } = getMapaElements();
+    if (tab && tab.classList.contains('active')) loadMapaScene(false);
+  }, delay);
+}
+
+function bindMapaInteractions() {
+  const { viewport } = getMapaElements();
+  if (!viewport || mapaViewState.interactionsBound) return;
+  mapaViewState.interactionsBound = true;
+
+  viewport.addEventListener('wheel', event => {
+    if (!mapaViewState.sceneWidth) return;
+    event.preventDefault();
+    const rect = viewport.getBoundingClientRect();
+    const factor = event.deltaY > 0 ? 0.9 : 1.1;
+    mapaZoomTo(mapaViewState.scale * factor, event.clientX - rect.left, event.clientY - rect.top);
+  }, { passive: false });
+
+  viewport.addEventListener('pointerdown', event => {
+    if (!mapaViewState.sceneWidth) return;
+    if (event.target.closest('.mapa-item-shell')) return;
+    if (mapaViewState.measureMode) return;
+    mapaViewState.dragging = true;
+    mapaViewState.dragPointerId = event.pointerId;
+    mapaViewState.dragStartX = event.clientX;
+    mapaViewState.dragStartY = event.clientY;
+    mapaViewState.dragOriginX = mapaViewState.offsetX;
+    mapaViewState.dragOriginY = mapaViewState.offsetY;
+    mapaViewState.dragMoved = false;
+    viewport.setPointerCapture(event.pointerId);
+    updateMapaControls();
+  });
+
+  viewport.addEventListener('pointermove', event => {
+    if (mapaViewState.measureMode && mapaViewState.measureStart && !mapaViewState.measureEnd) {
+      const rect = viewport.getBoundingClientRect();
+      const scenePoint = mapaViewportToScenePoint(event.clientX - rect.left, event.clientY - rect.top);
+      if (scenePoint) {
+        mapaViewState.measurePreview = scenePoint;
+        mapaViewState.measureText = mapaFormatApproxDistance(mapaViewState.measureStart, scenePoint);
+        renderMapaSceneView();
+        renderMapaSidebar();
+      }
+    }
+    if (!mapaViewState.dragging || mapaViewState.dragPointerId !== event.pointerId) return;
+    if (Math.abs(event.clientX - mapaViewState.dragStartX) > 3 || Math.abs(event.clientY - mapaViewState.dragStartY) > 3) mapaViewState.dragMoved = true;
+    mapaViewState.offsetX = mapaViewState.dragOriginX + (event.clientX - mapaViewState.dragStartX);
+    mapaViewState.offsetY = mapaViewState.dragOriginY + (event.clientY - mapaViewState.dragStartY);
+    mapaViewState.manualView = true;
+    mapaApplyTransform();
+  });
+
+  const endDrag = event => {
+    if (mapaViewState.dragPointerId !== null && event.pointerId === mapaViewState.dragPointerId) {
+      mapaViewState.dragging = false;
+      mapaViewState.dragPointerId = null;
+      updateMapaControls();
+    }
+  };
+
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+  viewport.addEventListener('click', event => {
+    if (!mapaViewState.measureMode || mapaViewState.dragMoved) return;
+    if (event.target.closest('.mapa-item-shell')) return;
+    const rect = viewport.getBoundingClientRect();
+    const scenePoint = mapaViewportToScenePoint(event.clientX - rect.left, event.clientY - rect.top);
+    if (!scenePoint) return;
+
+    if (!mapaViewState.measureStart || mapaViewState.measureEnd) {
+      mapaViewState.measureStart = scenePoint;
+      mapaViewState.measureEnd = null;
+      mapaViewState.measurePreview = null;
+      mapaViewState.measureText = 'START';
+      renderMapaSceneView();
+      renderMapaSidebar();
+      updateMapaControls();
+      return;
+    }
+
+    mapaViewState.measureEnd = scenePoint;
+    mapaViewState.measurePreview = null;
+    mapaFinalizeMeasurement(mapaViewState.measureStart, scenePoint);
+  });
+
+  viewport.addEventListener('dblclick', event => {
+    if (event.target.closest('.mapa-item-shell')) return;
+    mapaFitScene(true);
+  });
+
+  viewport.addEventListener('pointerleave', () => {
+    if (mapaViewState.measureMode && mapaViewState.measureStart && !mapaViewState.measureEnd) {
+      mapaViewState.measurePreview = null;
+      renderMapaSceneView();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (!mapaViewState.manualView) mapaFitScene(false);
+    else mapaApplyTransform();
+  });
+}
+
+function renderMapaSceneView() {
+  const { canvas, status } = getMapaElements();
+  if (!canvas) return;
+
+  if (!mapaViewState.items.length) {
+    renderMapaMessage(
+      'Mapa este nie je nacitana.',
+      'Otvor tab Mapa v Owlbear miestnosti alebo pouzi tlacidlo Obnovit.'
+    );
+    return;
+  }
+
+  const filteredItems = mapaGetTokenFilterItems(mapaViewState.items.filter(item => mapaViewState.layers[item.layer]));
+  if (!filteredItems.length) {
+    renderMapaMessage(
+      'Vsetky vrstvy su skryte.',
+      'Zapni aspon jednu vrstvu v toolbar-e hore, aby sa mala co vykreslit.'
+    );
+    return;
+  }
+
+  const effectiveScale = mapaViewState.scale || mapaViewState.fitScale || 1;
+  const labelsVisible = mapaViewState.labelsEnabled && effectiveScale >= Math.max(0.45, mapaViewState.fitScale * 0.9);
+  const markup = filteredItems.map(item => {
+    const point = mapaSceneToCanvasPoint(item.position);
+    const x = point.x;
+    const y = point.y;
+    const width = item.image.width || 0;
+    const height = item.image.height || 0;
+    const rotation = item.rotation || 0;
+    const scaleX = item.scale?.x ?? 1;
+    const scaleY = item.scale?.y ?? 1;
+    const name = mapaEscapeHtml(item.name || '');
+    const url = item.image.url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    const media = item.image.mime && item.image.mime.startsWith('video/')
+      ? `<video src="${url}" autoplay loop muted playsinline></video>`
+      : `<img src="${url}" alt="${name}" draggable="false">`;
+    const selectedClass = item.id === mapaViewState.selectedItemId ? ' is-selected' : '';
+
+    return `
+      <div class="mapa-item-shell${selectedClass}" title="${name || item.layer}" onclick="event.stopPropagation(); mapaHandleItemClick('${item.id}')" ondblclick="event.stopPropagation(); mapaCenterOnItem('${item.id}')" style="left:${x}px;top:${y}px;width:${width}px;height:${height}px;transform:translate(-50%, -50%) rotate(${rotation}deg) scale(${scaleX}, ${scaleY});z-index:${item.zIndex};">
+        ${media}
+        ${labelsVisible && name ? `<div class="mapa-item-label">${name}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  canvas.style.width = `${mapaViewState.sceneWidth}px`;
+  canvas.style.height = `${mapaViewState.sceneHeight}px`;
+  canvas.innerHTML = `${mapaBuildGridSvg()}${markup}${mapaBuildFogOverlay()}${mapaBuildMeasurementOverlay()}`;
+  mapaApplyTransform();
+  mapaApplyFollowIfNeeded();
+
+  if (status) {
+    const layerCount = Object.entries(mapaViewState.layers).filter(([, enabled]) => enabled).length;
+    const gridLabel = mapaViewState.grid ? `${mapaViewState.grid.type} ${mapaViewState.grid.scale?.raw || ''}`.trim() : 'grid off';
+    const filterLabel = mapaViewState.tokenFilter === 'characters' ? 'char only' : 'all tokens';
+    status.textContent = `Scena pripravena · ${filteredItems.length} image vrstiev · ${layerCount} zapnute vrstvy · ${gridLabel} · ${filterLabel}`;
+  }
+
+  renderMapaSidebar();
+  updateMapaControls();
+}
+
+async function loadMapaScene(forceRefit = false) {
+  const { status, viewport } = getMapaElements();
+  if (!status || !viewport) return;
+
+  status.textContent = 'Nacitavam scenu...';
+  bindMapaInteractions();
+
+  try {
+    const sdk = await ensureMapaSdk();
+    const OBR = sdk.default;
+    const isImage = sdk.isImage;
+
+    if (!OBR.isAvailable) {
+      renderMapaMessage(
+        'Mapa je dostupna iba v Owlbear extension.',
+        'Tento tab vie zobrazit zivu mapu len vtedy, ked je sheet otvoreny ako Owlbear extension priamo v miestnosti.'
+      );
+      return;
+    }
+
+    if (!OBR.isReady) {
+      await new Promise(resolve => {
+        const unsubscribe = OBR.onReady(() => {
+          unsubscribe();
+          resolve();
+        });
+      });
+    }
+
+    const sceneReady = await OBR.scene.isReady();
+    if (!sceneReady) {
+      renderMapaMessage(
+        'Scena este nie je pripravena.',
+        'Otvor mapu alebo aktivnu scenu v Owlbear Rodeo a potom sa vrat na tab Mapa.'
+      );
+      return;
+    }
+
+    const items = await OBR.scene.items.getItems(item => (
+      item.visible &&
+      isImage(item) &&
+      ['MAP', 'PROP', 'MOUNT', 'CHARACTER'].includes(item.layer)
+    ));
+
+    if (!items.length) {
+      renderMapaMessage(
+        'V scene nie su ziadne obrazkove vrstvy.',
+        'Na zobrazenie mapy musi aktualna Owlbear scena obsahovat aspon jeden viditelny image item.'
+      );
+      return;
+    }
+
+    const bounds = await OBR.scene.items.getItemBounds(items.map(item => item.id));
+    const [gridDpi, gridScale, gridType, gridOpacity, gridColor, gridLineWidth, gridLineType, gridMeasurement, fogFilled, fogColor, fogStrokeWidth, selection, playerName, playerColor, partyPlayers] = await Promise.all([
+      OBR.scene.grid.getDpi(),
+      OBR.scene.grid.getScale(),
+      OBR.scene.grid.getType(),
+      OBR.scene.grid.getOpacity(),
+      OBR.scene.grid.getColor(),
+      OBR.scene.grid.getLineWidth(),
+      OBR.scene.grid.getLineType(),
+      OBR.scene.grid.getMeasurement(),
+      OBR.scene.fog.getFilled(),
+      OBR.scene.fog.getColor(),
+      OBR.scene.fog.getStrokeWidth(),
+      OBR.player.getSelection(),
+      OBR.player.getName(),
+      OBR.player.getColor(),
+      OBR.party.getPlayers()
+    ]);
+
+    mapaViewState.items = [...items].sort((a, b) => a.zIndex - b.zIndex);
+    mapaViewState.bounds = bounds;
+    mapaViewState.sceneWidth = Math.max(800, Math.ceil(bounds.width + MAPA_SCENE_PADDING * 2));
+    mapaViewState.sceneHeight = Math.max(640, Math.ceil(bounds.height + MAPA_SCENE_PADDING * 2));
+    mapaViewState.grid = mapaNormalizeGrid({
+      dpi: gridDpi,
+      type: gridType,
+      measurement: gridMeasurement,
+      scale: gridScale,
+      style: {
+        lineType: gridLineType,
+        lineOpacity: gridOpacity,
+        lineColor: gridColor,
+        lineWidth: gridLineWidth
+      }
+    });
+    mapaViewState.fog = mapaNormalizeFog({
+      filled: fogFilled,
+      style: { color: fogColor, strokeWidth: fogStrokeWidth }
+    });
+    mapaViewState.playerSelection = Array.isArray(selection) ? selection : [];
+    mapaViewState.playerName = playerName || '';
+    mapaViewState.playerColor = playerColor || '#c0a040';
+    mapaViewState.party = Array.isArray(partyPlayers) ? partyPlayers : [];
+
+    const selectedStillExists = mapaFindItemById(mapaViewState.selectedItemId);
+    if (!selectedStillExists) {
+      const preferredSelection = mapaViewState.playerSelection.find(id => mapaFindItemById(id));
+      const preferredToken = mapaViewState.items.find(item => item.layer === 'CHARACTER') || mapaViewState.items.find(item => item.layer !== 'MAP');
+      mapaViewState.selectedItemId = preferredSelection || (preferredToken ? preferredToken.id : '');
+    }
+
+    renderMapaSceneView();
+    if (forceRefit || !mapaViewState.manualView || !mapaViewState.scale) {
+      mapaFitScene(false);
+      renderMapaSceneView();
+    } else {
+      mapaApplyTransform();
+    }
+
+    if (!mapaSceneSubscriptionActive) {
+      mapaSceneSubscriptionActive = true;
+      OBR.scene.items.onChange(() => scheduleMapaRefresh());
+      OBR.scene.onReadyChange(ready => {
+        if (ready) scheduleMapaRefresh(50);
+      });
+      OBR.scene.grid.onChange(grid => {
+        mapaViewState.grid = mapaNormalizeGrid(grid);
+        renderMapaSceneView();
+      });
+      OBR.scene.fog.onChange(fog => {
+        mapaViewState.fog = mapaNormalizeFog(fog);
+        renderMapaSceneView();
+      });
+      OBR.player.onChange(player => {
+        mapaViewState.playerSelection = Array.isArray(player.selection) ? player.selection : [];
+        mapaViewState.playerName = player.name || mapaViewState.playerName;
+        mapaViewState.playerColor = player.color || mapaViewState.playerColor;
+        const selected = mapaViewState.playerSelection.find(id => mapaFindItemById(id));
+        if (selected) mapaViewState.selectedItemId = selected;
+        renderMapaSceneView();
+      });
+      OBR.party.onChange(players => {
+        mapaViewState.party = Array.isArray(players) ? players : [];
+        renderMapaSidebar();
+      });
+    }
+  } catch (error) {
+    console.error('Mapa tab failed to load scene', error);
+    renderMapaMessage(
+      'Live mapa sa nepodarilo nacitat.',
+      'Owlbear iframe blok nie je mozne vlozit priamo. Tento tab teraz renderuje scenu cez SDK, ale inicializacia zlyhala.'
+    );
+  }
 }
 
 function toggleSidebar() {
