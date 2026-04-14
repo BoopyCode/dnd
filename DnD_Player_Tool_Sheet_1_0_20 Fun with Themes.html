@@ -1988,7 +1988,25 @@ body {
 .tab-content.active { display: block; }
 
 body.owlbear-extension {
-  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body.owlbear-extension .app-header {
+  height: 46px;
+  padding: 8px 16px;
+}
+
+body.owlbear-extension .header-subtitle {
+  display: none;
+}
+
+body.owlbear-extension .app-body {
+  min-height: calc(100dvh - 46px);
+}
+
+body.owlbear-extension .sidebar {
+  top: 46px;
+  height: calc(100dvh - 46px);
 }
 
 body.owlbear-extension .main-content {
@@ -2010,7 +2028,7 @@ body.owlbear-extension .mapa-layout {
 }
 
 body.owlbear-extension .mapa-viewport {
-  min-height: calc(100vh - 190px);
+  min-height: calc(100dvh - 138px);
 }
 
 body.owlbear-extension .panel,
@@ -7331,7 +7349,7 @@ async function maximizeOwlbearActionPopover() {
 
     const syncActionSize = async () => {
       const targetWidth = Math.max(1600, Math.min(window.screen.availWidth - 120, 2400));
-      const targetHeight = Math.max(900, Math.min(window.screen.availHeight - 140, 1600));
+      const targetHeight = Math.max(960, Math.min(window.screen.availHeight - 36, 2400));
       await Promise.all([
         OBR.action.setWidth(targetWidth),
         OBR.action.setHeight(targetHeight)
